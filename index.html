@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Saya</title>
+    <title>Rasyiid Portofolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -201,12 +201,32 @@
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
+            margin: 10px;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
         }
 
         .btn:hover {
             background-color: #c0392b;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
         }
 
         /* Projects Section */
@@ -226,6 +246,7 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            cursor: pointer;
         }
 
         .project-card:hover {
@@ -245,6 +266,160 @@
         .project-info h3 {
             margin-bottom: 10px;
             color: var(--primary-color);
+        }
+
+        .view-details {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* TAMBAHAN: Project Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 2rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            z-index: 2001;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-header-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: var(--light-color);
+            border-radius: 10px;
+        }
+
+        .detail-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-item p {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tech-tag {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #1a252f;
         }
 
         /* Experience Section */
@@ -367,98 +542,99 @@
             border-radius: 5px;
         }
 
-        /* Contact Section */
+        /* Contact Section - DIUBAH */
+        #contact {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+        }
+
         .contact-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
         }
 
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
         }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
+        .contact-card:hover {
+            transform: translateY(-10px);
         }
 
         .contact-icon {
-            width: 50px;
-            height: 50px;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-card p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .contact-link {
+            display: inline-block;
+            padding: 10px 20px;
             background-color: var(--secondary-color);
             color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 1.2rem;
-        }
-
-        .contact-form {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
+            text-decoration: none;
             border-radius: 5px;
-            font-size: 1rem;
+            transition: all 0.3s;
         }
 
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
+        .contact-link:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .social-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .social-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .social-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
         }
 
         /* Footer */
         footer {
-            background-color: var(--primary-color);
+            background-color: var(--dark-color);
             color: white;
             padding: 40px 0;
             text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 50%;
-            margin: 0 10px;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .social-link:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-5px);
         }
 
         .copyright {
@@ -524,6 +700,35 @@
             .section-title h2 {
                 font-size: 2rem;
             }
+
+            /* TAMBAHAN: Responsive Modal */
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+                max-height: 85vh;
+            }
+
+            .modal-header {
+                height: 200px;
+            }
+
+            .project-details {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                margin: 5px;
+                width: 200px;
+            }
         }
     </style>
 </head>
@@ -542,19 +747,25 @@
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="sertifikat.html">Sertifikat</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Home Section -->
+    <!-- Home Section - DIMODIFIKASI -->
     <section id="home">
         <div class="container">
             <div class="home-content">
                 <div class="home-text">
                     <h1>Halo, Saya <span style="color: var(--accent-color)">Rasyiid</span></h1>
-                    <p>Saya adalah seorang siswa TJKT dengan passion dalam menciptakan pengalaman digital yang menarik dan fungsional. Saya berfokus dalam pengembangan jaringan dengan teknologi modern.</p>
-                    <a href="#projects" class="btn">Lihat Projek Saya</a>
+                    <p>Saya adalah seorang siswa TJKT dengan passion dalam menciptakan pengalaman terhadap teknologi yang fungsional. Saya berfokus dalam pengembangan jaringan, mampu membangun program baik untuk web maupun IoT.</p>
+                    <div class="btn-container">
+                        <a href="#projects" class="btn">Lihat Projek Saya</a>
+                        <a href="sertifikat.html" class="btn btn-outline">
+                            <i class="fas fa-award"></i> Lihat Sertifikat
+                        </a>
+                    </div>
                 </div>
                 <div class="home-image">
                     <img src="FolderFoto/fotoHOME.jpeg" alt="Foto Profil" class="profile-img">
@@ -563,33 +774,39 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section - DIMODIFIKASI -->
     <section id="projects">
         <div class="container">
             <div class="section-title">
                 <h2>Proyek Saya</h2>
-                <p>Beberapa karya terbaru yang telah saya selesaikan</p>
+                <p>Klik pada project untuk melihat detail</p>
             </div>
             <div class="projects-grid">
-                <div class="project-card">
+                <!-- Project 1 - DIMODIFIKASI -->
+                <div class="project-card" data-project="1">
                     <img src="FolderFoto/FotoProject1.jpeg" alt="Proyek 1" class="project-img">
                     <div class="project-info">
-                        <h3>Konfigurasi 2 mikrotik</h3>
+                        <h3>Konfigurasi 2 Mikrotik</h3>
                         <p>Konfigurasi kedua mikrotik dengan VLAN.</p>
+                        <span class="view-details">Klik untuk detail →</span>
                     </div>
                 </div>
-                <div class="project-card">
+                <!-- Project 2 - DIMODIFIKASI -->
+                <div class="project-card" data-project="2">
                     <img src="FolderFoto/FotoProject2.jpeg" alt="Proyek 2" class="project-img">
                     <div class="project-info">
-                        <h3>Project website portofolio</h3>
-                        <p>Mengikuti kegiatan expo bootcamp, membuat website dengan menggunakan HTML & JavaScript.</p>
+                        <h3>Website Portofolio</h3>
+                        <p>Website responsive dengan HTML & JavaScript.</p>
+                        <span class="view-details">Klik untuk detail →</span>
                     </div>
                 </div>
-                <div class="project-card">
+                <!-- Project 3 - DIMODIFIKASI -->
+                <div class="project-card" data-project="3">
                     <img src="FolderFoto/FotoProject3.jpeg" alt="Proyek 3" class="project-img">
                     <div class="project-info">
                         <h3>Smart Lock Door</h3>
-                        <p>Alat penguncian pintu otomatis untuk membantu meningkatkan keamanan.</p>
+                        <p>Sistem penguncian pintu otomatis IoT.</p>
+                        <span class="view-details">Klik untuk detail →</span>
                     </div>
                 </div>
             </div>
@@ -691,64 +908,64 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section - DIUBAH TOTAL -->
     <section id="contact">
         <div class="container">
             <div class="section-title">
-                <h2>Kontak Saya</h2>
-                <p>Jangan ragu untuk menghubungi saya</p>
+                <h2 style="color: white;">Kontak Saya</h2>
+                <p style="color: rgba(255,255,255,0.8);">Jangan ragu untuk menghubungi saya</p>
             </div>
+            
             <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h3>Lokasi</h3>
-                            <p>Bogor, Indonesia</p>
-                        </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h3>Email</h3>
-                            <p>ahmadhabibi1761@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h3>Telepon</h3>
-                            <p>+62 8xx xxxx xxxx</p>
-                        </div>
-                    </div>
+                    <h3>Email</h3>
+                    <p>ahmadhabibi1761@gmail.com</p>
+                    <a href="mailto:ahmadhabibi1761@gmail.com" class="contact-link">Kirim Email</a>
                 </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nama</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subjek</label>
-                            <input type="text" id="subject" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Pesan</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Kirim Pesan</button>
-                    </form>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Lokasi</h3>
+                    <p>Bogor, Indonesia</p>
+                    <a href="https://maps.google.com/?q=Bogor,Indonesia" class="contact-link" target="_blank">Lihat di Maps</a>
                 </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Telepon</h3>
+                    <p>+62 813 9210 1992</p>
+                    <a href="tel:+6281392101992" class="contact-link">Hubungi Saya</a>
+                </div>
+            </div>
+
+            <div class="social-grid">
+                <a href="https://www.linkedin.com/in/ahmad-rasyiid-178227329/" class="social-card">
+                    <i class="fab fa-linkedin-in"></i>
+                    <h4>LinkedIn</h4>
+                    <p>Professional Profile</p>
+                </a>
+                <a href="#" class="social-card">
+                    <i class="fab fa-github"></i>
+                    <h4>GitHub</h4>
+                    <p>Code Repository</p>
+                </a>
+                <a href="https://www.instagram.com/arassiee_amd/" class="social-card">
+                    <i class="fab fa-instagram"></i>
+                    <h4>Instagram</h4>
+                    <p>Daily Updates</p>
+                </a>
+                <a href="#" class="social-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h4>WhatsApp</h4>
+                    <p>Quick Chat</p>
+                </a>
             </div>
         </div>
     </section>
@@ -756,15 +973,211 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p class="copyright">&copy; 2023 Portofolio Saya. All rights reserved.</p>
+            <p class="copyright">&copy; 2025 Ahmad Rasyiid Habibie. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- TAMBAHAN: PROJECT MODALS -->
+    <!-- Modal Project 1 -->
+    <div id="projectModal1" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <img src="FolderFoto/FotoProject1.jpeg" alt="Konfigurasi Mikrotik" class="modal-header-img">
+            </div>
+            <div class="modal-body">
+                <h2 class="modal-title">Konfigurasi 2 Mikrotik dengan VLAN</h2>
+                <p class="modal-description">
+                    Implementasi jaringan kompleks menggunakan dua perangkat Mikrotik dengan konfigurasi VLAN untuk segmentasi jaringan yang optimal. 
+                    Project ini meningkatkan keamanan dan performa jaringan dengan memisahkan traffic berdasarkan departemen.
+                </p>
+                
+                <div class="project-details">
+                    <div class="detail-item">
+                        <h4>Lokasi</h4>
+                        <p>Rumah</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Durasi</h4>
+                        <p>1 jam</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Status</h4>
+                        <p>Selesai & Terimplementasi</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Tahun</h4>
+                        <p>2025</p>
+                    </div>
+                </div>
+
+                <h4>Teknologi yang Digunakan:</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">Mikrotik OS</span>
+                    <span class="tech-tag">VLAN</span>
+                    <span class="tech-tag">Laptop</span>
+                    <span class="tech-tag">LAN</span>
+                    <span class="tech-tag">Firewall</span>
+                </div>
+
+                <h4>Fitur Utama:</h4>
+                <ul style="margin-bottom: 25px; padding-left: 20px;">
+                    <li>Segmentasi jaringan dengan VLAN untuk keamanan optimal</li>
+                    <li>Konfigurasi routing antar VLAN</li>
+                    <li>Quality of Service (QoS) untuk manajemen bandwidth</li>
+                    <li>Firewall rules untuk keamanan jaringan</li>
+                    <li>Monitoring dan troubleshooting jaringan</li>
+                </ul>
+
+                <h4>Hasil yang Dicapai:</h4>
+                <ul style="margin-bottom: 25px; padding-left: 20px;">
+                    <li>Peningkatan keamanan jaringan sebesar 60%</li>
+                    <li>Optimasi bandwidth usage dengan QoS</li>
+                    <li>Isolasi traffic antar departemen</li>
+                    <li>Monitoring jaringan yang lebih efektif</li>
+                </ul>
+
+                <div class="modal-actions">
+                    <a href="#" class="btn" target="_blank">Lihat Dokumentasi</a>
+                    <a href="#" class="btn btn-secondary" target="_blank">Config Files</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Project 2 -->
+    <div id="projectModal2" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <img src="FolderFoto/FotoProject2.jpeg" alt="Website Portofolio" class="modal-header-img">
+            </div>
+            <div class="modal-body">
+                <h2 class="modal-title">Website Portofolio Bootcamp</h2>
+                <p class="modal-description">
+                    Pengembangan website portofolio responsive selama mengikuti bootcamp expo. Website ini menampilkan skills, project, 
+                    dan pengalaman dengan design modern dan user-friendly interface.
+                </p>
+                
+                <div class="project-details">
+                    <div class="detail-item">
+                        <h4>Event</h4>
+                        <p>Bootcamp Expo</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Durasi</h4>
+                        <p>3 Minggu</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Status</h4>
+                        <p>Selesai</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Tahun</h4>
+                        <p>2025</p>
+                    </div>
+                </div>
+
+                <h4>Teknologi yang Digunakan:</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">NodeJS</span>
+                    <span class="tech-tag">Git</span>
+                    <span class="tech-tag">Figma</span>
+                </div>
+
+                <h4>Fitur Utama:</h4>
+                <ul style="margin-bottom: 25px; padding-left: 20px;">
+                    <li>Design responsive untuk semua device</li>
+                    <li>Animasi smooth scrolling</li>
+                    <li>Project gallery dengan modal details</li>
+                    <li>Optimasi SEO dasar</li>
+                    <li>User experience yang baik</li>
+                </ul>
+
+                <h4>Pencapaian:</h4>
+                <ul style="margin-bottom: 25px; padding-left: 20px;">
+                    <li>Mendapatkan apresiasi dari mentor bootcamp</li>
+                    <li>Website fully responsive</li>
+                    <li>Loading time yang optimal</li>
+                    <li>Clean code dan maintainable structure</li>
+                </ul>
+
+                <div class="modal-actions">
+                    <a href="#" class="btn" target="_blank">Live Demo</a>
+                    <a href="#" class="btn btn-secondary" target="_blank">Source Code</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Project 3 -->
+    <div id="projectModal3" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <img src="FolderFoto/FotoProject3.jpeg" alt="Smart Lock Door" class="modal-header-img">
+            </div>
+            <div class="modal-body">
+                <h2 class="modal-title">Smart Lock Door System</h2>
+                <p class="modal-description">
+                    Sistem penguncian pintu otomatis berbasis IoT yang meningkatkan keamanan dengan teknologi RFID. 
+                    Sistem ini dapat mendeteksi ID chip yang berada di dalam kartu.
+                </p>
+                
+                <div class="project-details">
+                    <div class="detail-item">
+                        <h4>Kategori</h4>
+                        <p>Internet of Things</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Durasi</h4>
+                        <p>1 Bulan</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Status</h4>
+                        <p>Prototype</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Tahun</h4>
+                        <p>2025</p>
+                    </div>
+                </div>
+
+                <h4>Teknologi yang Digunakan:</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">Arduino IDE</span>
+                    <span class="tech-tag">ESP32</span>
+                    <span class="tech-tag">RFID Sensor</span>
+                    <span class="tech-tag">Servo</span>
+                    <span class="tech-tag">BreadBoard</span>
+                </div>
+
+                <h4>Fitur Utama:</h4>
+                <ul style="margin-bottom: 25px; padding-left: 20px;">
+                    <li>Autentikasi factor (Scan card)</li>
+                    <li>Log aktivitas akses pintu</li>
+                    <li>Emergency unlock feature</li>
+                </ul>
+
+                <h4>Keunggulan:</h4>
+                <ul style="margin-bottom: 25px; padding-left: 20px;">
+                    <li>Response time under 2 seconds</li>
+                    <li>Accuracy scan card 98.7%</li>
+                    <li>Battery life hingga 6 bulan</li>
+                    <li>Compatible dengan berbagai jenis pintu</li>
+                </ul>
+
+                <div class="modal-actions">
+                    <a href="#" class="btn" target="_blank">Demo Video</a>
+                    <a href="#" class="btn btn-secondary" target="_blank">Technical Docs</a>
+                    <a href="#" class="btn" target="_blank">Prototype Images</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Mobile Menu Toggle
@@ -783,14 +1196,6 @@
             });
         });
 
-        // Form submission
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Pesan Anda telah berhasil dikirim!');
-            contactForm.reset();
-        });
-
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -807,6 +1212,52 @@
                     });
                 }
             });
+        });
+
+        // TAMBAHAN: PROJECT MODAL FUNCTIONALITY
+        const projectCards = document.querySelectorAll('.project-card');
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.close-modal');
+
+        // Open modal when project card is clicked
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const projectId = card.getAttribute('data-project');
+                const modal = document.getElementById(`projectModal${projectId}`);
+                if (modal) {
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close modal when X is clicked
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.modal');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close modal when clicking outside content
+        modals.forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                modals.forEach(modal => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
         });
     </script>
 </body>
