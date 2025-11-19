@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sertifikat - Rasyiid Portofolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/animations.css">
     <style>
         * {
             margin: 0;
@@ -455,14 +456,14 @@
     <!-- Certificates Section -->
     <section id="certificates">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title fade-in-up">
                 <h2>Sertifikat Saya</h2>
                 <p>Koleksi sertifikat dan pencapaian yang telah saya raih selama perjalanan belajar</p>
             </div>
 
             <div class="certificates-grid">
                 <!-- Sertifikat 1 -->
-                <div class="certificate-card">
+                <div class="certificate-card fade-in-up delay-1">
                     <div class="certificate-img-container">
                         <img src="FolderFoto/sertifikat1.jpg.png" alt="Sertifikat Bootcamp" class="certificate-img" onclick="openModal(this.src)">
                     </div>
@@ -477,7 +478,7 @@
                 </div>
 
                 <!-- Sertifikat 2 -->
-                <div class="certificate-card">
+                <div class="certificate-card fade-in-up delay-2">
                     <div class="certificate-img-container">
                         <img src="FolderFoto/sertifikat2.jpg" alt="Sertifikat Networking" class="certificate-img" onclick="openModal(this.src)">
                     </div>
@@ -492,7 +493,7 @@
                 </div>
 
                 <!-- Sertifikat 3 -->
-                <div class="certificate-card">
+                <div class="certificate-card fade-in-up delay-3">
                     <div class="certificate-img-container">
                         <img src="FolderFoto/sertifikat3.jpg" alt="Sertifikat IoT" class="certificate-img" onclick="openModal(this.src)">
                     </div>
@@ -507,7 +508,7 @@
                 </div>
 
                 <!-- Sertifikat 4 -->
-                <div class="certificate-card">
+                <div class="certificate-card fade-in-up">
                     <div class="certificate-img-container">
                         <img src="FolderFoto/sertifikat4.jpg" alt="Sertifikat Mikrotik" class="certificate-img" onclick="openModal(this.src)">
                     </div>
@@ -523,7 +524,7 @@
             </div>
 
             <div class="back-home">
-                <a href="index.html" class="btn">
+                <a href="index.html" class="btn shake">
                     <i class="fas fa-arrow-left"></i> Kembali ke Home
                 </a>
             </div>
@@ -542,6 +543,12 @@
             <p class="copyright">&copy; 2025 Ahmad Rasyiid Habibie. All rights reserved.</p>
         </div>
     </footer>
+
+    <div id="certificateModal" class="certificate-modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="certificate-modal-content" id="modalImage">
+    </div>
+
 
     <script>
         // Mobile Menu Toggle
@@ -616,5 +623,9 @@
             });
         });
     </script>
+    <script src="js/scrollEffects.js"></script>
+    <script src="js/animations.js"></script>
+
+
 </body>
 </html>
