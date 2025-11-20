@@ -39,10 +39,17 @@ class Particles {
         this.particles = [];
         const numberOfParticles = (this.canvas.width * this.canvas.height) / 10000;
         
-        for (let i = 0; i < numberOfParticles; i++) {
+
+        const cols = Math.sqrt(numberOfParticles);
+        const rows = cols;
+        
+        for (let i = 0; i < numberOfParticles; i++) {           
+            const col = i % cols;
+            const row = Math.floor(i / cols);
+            
             this.particles.push({
-                x: Math.random() * this.canvas.width,
-                y: Math.random() * this.canvas.height,
+                x: (col / cols) * this.canvas.width + Math.random() * 50 - 25,
+                y: (row / rows) * this.canvas.height + Math.random() * 50 - 25,
                 size: Math.random() * 2 + 1,
                 speedX: Math.random() * 1 - 0.5,
                 speedY: Math.random() * 1 - 0.5,
