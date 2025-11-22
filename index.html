@@ -8,20 +8,20 @@
     <!-- Tambahan setelah font-awesome -->
     <link rel="stylesheet" href="css/animations.css">
     <style>
-        html, body {
-            width: 100%;
-            max-width: 100%;
+        body, html {
             overflow-x: hidden;
-            position: relative;
+            }
+            *, *::before, *::after {
+                max-width: 100%;
         }
        
         #home canvas {
-            position: fixed !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            left: 0 !important;
-            top: 0 !important;
-            max-width: 100% !important;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            max-width: 100%;
         }
 
         #home {
@@ -166,6 +166,7 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             text-align: center;
@@ -176,6 +177,7 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .home-text {
@@ -308,7 +310,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
             animation: fadeIn 0.3s;
             overflow-y: auto;
         }
@@ -323,7 +325,7 @@
             margin: 5% auto;
             padding: 0;
             width: 90%;
-            max-width: 900px;
+            max-width: min(600px, 90vw);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             animation: slideIn 0.3s;
@@ -652,7 +654,163 @@
             color: var(--secondary-color);
         }
 
-        /* Footer */
+        /* ============= media query | buat android ============= */
+        @media (max-width: 768px) {
+            /* ===== Hamburger Menu ===== */
+            nav {
+                padding: 15px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                color: white;
+                z-index: 2001;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                gap: 25px;
+                transition: 0.3s ease;
+            }
+
+            .nav-links li {
+                margin: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            /* ketika menu dibuka */
+            .nav-links.active {
+                right: 0;
+            }
+
+            /* ===== Home Section Photo Profile ===== */
+            .home-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .profile-img {
+                width: 150px;  /* PERKECIL DARI 200px */
+                height: 150px; /* PERKECIL DARI 200px */
+                margin-bottom: 0; /* HAPUS MARGIN BOTTOM */
+            }
+
+            .home-text h1 {
+                font-size: 1.8rem; /* Sedikit lebih kecil */
+                margin-bottom: 15px;
+            }
+
+            .home-text p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                margin: 5px;
+            }
+
+            /* ===== Timeline Responsif | tampilan pengalaman ===== */
+            .timeline::after {
+                left: 20px; /* posisi garis biru */
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px; /* Ruang untuk garis */
+                padding-right: 15px;
+                left: 0; /* posisi semua item */
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0; /* Semua item di posisi yang sama */
+            }
+
+            .timeline-item::after {
+                left: 12px; /* Bulatan sejajar dengan garis */
+                right: auto;
+            }
+
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 12px; /* Semua bulatan di posisi sama */
+            }
+
+            .timeline-content {
+                padding: 15px;
+                margin-left: 0;
+            }
+
+            /* ===== General Overflow Profile ===== */
+            body {
+                overflow-x: hidden;
+                width: 100vw;
+                position: relative;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 15px;
+            }
+            
+            section {
+                width: 100%;
+                overflow-x: hidden;
+            }
+                        
+            img {/* gambar tidak melebihi container */
+                max-width: 100%;
+                height: auto;
+            }
+                       
+            .projects-grid {/* no overflow */
+                width: 100%;
+                overflow-x: hidden;
+            }
+                     
+            .modal-content { /* no overflow */
+                width: 95vw;
+                max-width: 95vw;
+                margin: 10% auto;
+            }
+            
+            /* Timeline mobile fix */
+            .timeline-content {
+                width: 100%;
+                margin-right: 0;
+                word-wrap: break-word;
+            }
+
+            /* Home Section home Padding Fix */
+            #home {
+                height: auto; /* Natural height di mobile */
+                min-height: 100vh;
+                padding: 80px 0 40px;
+            }
+            
+            .home-content {
+                flex-direction: column-reverse;
+                gap: 30px;
+            }
+        }
+
+
+        /* ===== Footer ===== */
         footer {
             background-color: var(--dark-color);
             color: white;
@@ -694,7 +852,7 @@
             <div class="home-content">
                 <div class="home-text slide-in-left">
                     <h1>Halo, Saya <span class="gradient-text">Rasyiid</span></h1>
-                    <p>Saya adalah seorang <span class="txt-type" data-wait="3000" data-words='["siswa TJKT", "web developer", "network enthusiast", "IoT lover"]'></span></p>
+                    <p>Aku adalah seorang <span class="txt-type" data-wait="3000" data-words='["siswa TJKT", "web developer", "network enthusiast", "IoT lover"]'></span></p>
                     <p>dengan passion dalam menciptakan pengalaman digital yang menarik dan fungsional.</p>
     
                     <div class="btn-container">
@@ -711,7 +869,7 @@
         </div>
     </section>
 
-    <!-- Projects Section - DIMODIFIKASI -->
+    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
             <div class="section-title">
@@ -719,7 +877,7 @@
                 <p>Klik pada project untuk melihat detail</p>
             </div>
             <div class="projects-grid">
-                <!-- Project 1 - DIMODIFIKASI -->
+                <!-- Project 1 -->
                 <div class="project-card" data-project="1">
                     <img src="FolderFoto/FotoProject1.jpeg" alt="Proyek 1" class="project-img">
                     <div class="project-info">
@@ -728,16 +886,16 @@
                         <span class="view-details">Klik untuk detail →</span>
                     </div>
                 </div>
-                <!-- Project 2 - DIMODIFIKASI -->
+                <!-- Project 2 -->
                 <div class="project-card" data-project="2">
                     <img src="FolderFoto/FotoProject2.jpeg" alt="Proyek 2" class="project-img">
                     <div class="project-info">
-                        <h3>Website Portofolio</h3>
-                        <p>Website responsive dengan HTML & JavaScript.</p>
+                        <h3>Design Web</h3>
+                        <p>Merancang dan membangun design UI/UX pada sebuah web.</p>
                         <span class="view-details">Klik untuk detail →</span>
                     </div>
                 </div>
-                <!-- Project 3 - DIMODIFIKASI -->
+                <!-- Project 3 -->
                 <div class="project-card" data-project="3">
                     <img src="FolderFoto/FotoProject3.jpeg" alt="Proyek 3" class="project-img">
                     <div class="project-info">
@@ -845,7 +1003,7 @@
         </div>
     </section>
 
-    <!-- Contact Section - DIUBAH TOTAL -->
+    <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <div class="section-title">
@@ -913,7 +1071,7 @@
         </div>
     </footer>
 
-    <!-- TAMBAHAN: PROJECT MODALS -->
+    <!-- PROJECT MODALS -->
     <!-- Modal Project 1 -->
     <div id="projectModal1" class="modal">
         <div class="modal-content">
@@ -989,10 +1147,10 @@
                 <img src="FolderFoto/FotoProject2.jpeg" alt="Website Portofolio" class="modal-header-img">
             </div>
             <div class="modal-body">
-                <h2 class="modal-title">Website Portofolio Bootcamp</h2>
+                <h2 class="modal-title">mendesign web Portofolio</h2>
                 <p class="modal-description">
-                    Pengembangan website portofolio responsive selama mengikuti bootcamp expo. Website ini menampilkan skills, project, 
-                    dan pengalaman dengan design modern dan user-friendly interface.
+                    Pengembangan desain portofolio responsive selama mengikuti bootcamp expo. Desain ini menampilkan skills, project, 
+                    dan pengalaman dengan desain modern dan user-friendly interface.
                 </p>
                 
                 <div class="project-details">
@@ -1028,17 +1186,15 @@
                 <ul style="margin-bottom: 25px; padding-left: 20px;">
                     <li>Design responsive untuk semua device</li>
                     <li>Animasi smooth scrolling</li>
-                    <li>Project gallery dengan modal details</li>
-                    <li>Optimasi SEO dasar</li>
                     <li>User experience yang baik</li>
                 </ul>
 
                 <h4>Pencapaian:</h4>
                 <ul style="margin-bottom: 25px; padding-left: 20px;">
                     <li>Mendapatkan apresiasi dari mentor bootcamp</li>
-                    <li>Website fully responsive</li>
+                    <li>Design fully responsive</li>
                     <li>Loading time yang optimal</li>
-                    <li>Clean code dan maintainable structure</li>
+                    <li>Simple dan structure</li>
                 </ul>
 
                 <div class="modal-actions">
@@ -1088,21 +1244,22 @@
                     <span class="tech-tag">ESP32</span>
                     <span class="tech-tag">RFID Sensor</span>
                     <span class="tech-tag">Servo</span>
-                    <span class="tech-tag">BreadBoard</span>
+                    <span class="tech-tag">C/C++ Language</span>
                 </div>
 
                 <h4>Fitur Utama:</h4>
                 <ul style="margin-bottom: 25px; padding-left: 20px;">
                     <li>Autentikasi factor (Scan card)</li>
-                    <li>Log aktivitas akses pintu</li>
-                    <li>Emergency unlock feature</li>
+                    <li>Servo penguncian pintu</li>
+                    <li>LCD visual indikator</li>
+                    <li>LED lampu indikator</li>
+                    <li>Buzzer suara indikator</li>
                 </ul>
 
                 <h4>Keunggulan:</h4>
                 <ul style="margin-bottom: 25px; padding-left: 20px;">
                     <li>Response time under 2 seconds</li>
-                    <li>Accuracy scan card 98.7%</li>
-                    <li>Battery life hingga 6 bulan</li>
+                    <li>Accuracy scan card 99.7%</li>
                     <li>Compatible dengan berbagai jenis pintu</li>
                 </ul>
 
@@ -1163,6 +1320,7 @@
                 if (modal) {
                     modal.style.display = 'block';
                     document.body.style.overflow = 'hidden';
+                    document.documentElement.style.overflow = 'hidden';
                 }
             });
         });
@@ -1173,6 +1331,7 @@
                 const modal = button.closest('.modal');
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
+                document.documentElement.style.overflow = 'auto';
             });
         });
 
@@ -1182,6 +1341,7 @@
                 if (e.target === modal) {
                     modal.style.display = 'none';
                     document.body.style.overflow = 'auto';
+                    document.documentElement.style.overflow = 'auto';
                 }
             });
         });
@@ -1192,6 +1352,7 @@
                 modals.forEach(modal => {
                     modal.style.display = 'none';
                     document.body.style.overflow = 'auto';
+                    document.documentElement.style.overflow = 'auto';
                 });
             }
         });

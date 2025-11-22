@@ -20,7 +20,9 @@ class TypeWriter {
             this.txt = fullTxt.substring(0, this.txt.length + 1);
         }
 
-        this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+        this.txtElement.innerHTML = `<span class="txt" style="white-space: nowrap">${this.txt}</span>`;
+
+        //this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
 
         let typeSpeed = 100;
 

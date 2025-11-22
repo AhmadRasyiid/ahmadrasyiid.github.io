@@ -1,4 +1,4 @@
-// Scroll Reveal Animation - UPDATE INI
+// Scroll Reveal Animation
 class ScrollReveal {
     constructor() {
         this.elements = document.querySelectorAll('.fade-in-up, .section-title, .project-card, .certificate-card, .slide-in-left, .slide-in-right, .zoom-in');
@@ -35,7 +35,7 @@ class ScrollReveal {
     }
 }
 
-// TAMBAH: Page Load Animation
+// Page Load Animation
 function initPageLoadAnimations() {
     // Element yang mau animate saat page load
     const homeText = document.querySelector('.home-text');
@@ -63,7 +63,7 @@ function initPageLoadAnimations() {
 // Initialize all scroll effects - UPDATE
 document.addEventListener('DOMContentLoaded', function() {
     new ScrollReveal();
-    initPageLoadAnimations(); // TAMBAH INI
+    initPageLoadAnimations();
     initSmoothScroll();
     initNavbarScroll();
 });
